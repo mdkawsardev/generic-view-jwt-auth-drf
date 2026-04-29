@@ -1,3 +1,8 @@
 from django.shortcuts import render
+from rest_framework import generics
+from user.serializers import UserDetailsSerializer
+from user.models import UserDetails
 
-# Create your views here.
+class UserDetailsView(generics.ListCreateAPIView):
+    queryset = UserDetails.objects.all()
+    serializer_class = UserDetailsSerializer
