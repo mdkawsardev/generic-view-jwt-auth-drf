@@ -7,7 +7,7 @@ router = DefaultRouter()
 router.register(r'userdata', UserViewset, basename='user')
 urlpatterns = [
     path('', include(router.urls)),
-    path('login/', TokenObtainPairView.as_view(), name='login'),
+    path('login/', TokenObtainPairView.as_view(), name='login-user'),
     path('login/refresh/', TokenRefreshView.as_view(), name='refresh'),
     path('signup/', SignupViewset.as_view({'post': 'create'}), name='signup')
 ]
