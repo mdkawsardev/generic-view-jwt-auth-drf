@@ -1,17 +1,19 @@
 from django.shortcuts import render, get_object_or_404
-from rest_framework import viewsets
-from viewset.serializers import UserDataSerializer
+from django.contrib.auth.models import User
+from rest_framework import viewsets, filters
+from viewset.serializers import *
 from rest_framework.response import Response
+from rest_framework.filters import SearchFilter
 from viewset.models import UserData
-class UserViewset(viewsets.ViewSet):
-    
-    def list(self, request):
-        queryset = UserData.objects.all()
-        serializer = UserDataSerializer(queryset, many=True)
-        return Response(serializer.data)
+from rest_framework.permissions import IsAuthenticated
 
-    def create(self, request):
-        set_data = UserDataSerializer(data=request.data)
-        if set_data.is_valid():
-            set_data.save()
-            return Response({"message:": "Inserted data saved!", "new data": set_data.data})
+class UserViewset(viewsets.ModelViewSet):
+    queryset = UserData.objects.all()
+    serializer_class = UserDataSerializer
+    permission_classes = [IsAuthenticated]
+    # filter_backends = [filters.SearchFilter]
+    # search_fields = ["name"]
+
+class SignupViewset(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = SignupSerializer
