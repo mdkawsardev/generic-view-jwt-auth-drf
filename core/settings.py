@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'app',
     'testapi',
     'user',
+    'viewset',
     'rest_framework_simplejwt',
     'django.contrib.admin',
     'django.contrib.auth',
