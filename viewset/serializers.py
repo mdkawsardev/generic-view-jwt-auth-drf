@@ -6,7 +6,7 @@ class UserDataSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserData
-        # exclude = ["id"]
+        # exclude = ["id"] it displays all data without id
         fields = "__all__"
 class SignupSerializer(serializers.ModelSerializer):
 
